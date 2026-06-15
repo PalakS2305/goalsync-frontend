@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GoalSync — Manager Dashboard</title>
+  <link rel="stylesheet" href="../css/global.css"/>
+</head>
+<body class="dashboard-body">
+
+  <nav class="navbar">
+    <h2>🎯 GoalSync</h2>
+    <div class="navbar-right">
+      <div class="navbar-user">
+        <div class="navbar-avatar" id="navAvatar">M</div>
+        <span id="navUserName">Loading...</span>
+      </div>
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+  </nav>
+
+  <div class="dashboard-content">
+
+    <div class="welcome-card">
+      <h1>Welcome back, <span id="userName">...</span>! 👋</h1>
+      <p>Review your team's goals and conduct quarterly check-ins.</p>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-card" style="cursor:pointer"
+           onclick="window.location.href='manager-team.html'">
+        <div class="number">👥</div>
+        <div class="label">Review Team Goals</div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="../js/auth.js"></script>
+  <script>
+    const user = requireAuth('manager');
+    if (user) {
+      document.getElementById('userName').textContent    = user.name;
+      document.getElementById('navUserName').textContent = user.name;
+      document.getElementById('navAvatar').textContent   = 
+        user.name.charAt(0).toUpperCase();
+    }
+  </script>
+
+</body>
+</html>

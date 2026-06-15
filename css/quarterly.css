@@ -1,0 +1,121 @@
+/* ── Quarter Selector ── */
+.quarter-selector {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 24px;
+  background: white;
+  padding: 8px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.quarter-btn {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: #6b7280;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+}
+
+.quarter-btn:hover  { background: #f3f4f6; }
+.quarter-btn.active { background: #0f3460; color: white; }
+
+/* ── Achievement Card ── */
+.achievement-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  border-left: 4px solid #e5e7eb;
+}
+
+.achievement-card.has-data { border-left-color: #059669; }
+.achievement-card.no-data  { border-left-color: #e5e7eb; }
+
+.achievement-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.achievement-title {
+  font-weight: 700;
+  color: #111827;
+  font-size: 0.95rem;
+}
+
+.achievement-meta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 6px;
+}
+
+/* ── Score Display ── */
+.score-display {
+  text-align: center;
+  min-width: 80px;
+}
+
+.score-number {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #059669;
+}
+
+.score-label {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+/* ── Planned vs Actual ── */
+.pva-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #f3f4f6;
+}
+
+.pva-item {
+  text-align: center;
+}
+
+.pva-value {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #0f3460;
+}
+
+.pva-label {
+  font-size: 0.75rem;
+  color: #6b7280;
+  margin-top: 2px;
+}
+
+/* ── Manager Comment ── */
+.checkin-comment {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-top: 12px;
+  font-size: 0.85rem;
+  color: #166534;
+}
+
+/* ── Not logged yet ── */
+.not-logged {
+  color: #9ca3af;
+  font-size: 0.875rem;
+  font-style: italic;
+}

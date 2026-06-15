@@ -1,0 +1,183 @@
+/* ── Team Card ── */
+.team-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+  transition: box-shadow 0.2s, transform 0.1s;
+  border-left: 4px solid #e5e7eb;
+}
+
+.team-card:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  transform: translateY(-1px);
+}
+
+.team-card.has-pending { border-left-color: #f59e0b; }
+.team-card.all-approved { border-left-color: #059669; }
+.team-card.no-goals { border-left-color: #e5e7eb; }
+
+.team-card-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 4px;
+}
+
+.team-card-dept {
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+.team-card-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.pending-badge {
+  background: #fef3c7;
+  color: #92400e;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.approved-badge {
+  background: #d1fae5;
+  color: #065f46;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.no-goals-badge {
+  background: #f3f4f6;
+  color: #6b7280;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.82rem;
+}
+
+/* ── Employee Goals Panel ── */
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.panel-header h2 { color: #0f3460; }
+
+/* ── Action Panel ── */
+.action-panel {
+  background: white;
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-top: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.action-left p {
+  color: #374151;
+  font-size: 0.95rem;
+}
+
+.action-right {
+  display: flex;
+  gap: 12px;
+}
+
+.btn-approve {
+  background: #059669;
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-approve:hover { background: #047857; }
+
+.btn-return {
+  background: #fef3c7;
+  color: #92400e;
+  border: 2px solid #fcd34d;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-return:hover { background: #fde68a; }
+
+/* ── Return Comment Box ── */
+.return-box {
+  background: #fff7ed;
+  border: 2px solid #fed7aa;
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-top: 16px;
+}
+
+.return-box textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  outline: none;
+  margin-top: 8px;
+  resize: vertical;
+}
+
+.return-box textarea:focus { border-color: #f59e0b; }
+
+.return-box-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.btn-return-confirm {
+  background: #dc2626;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-return-confirm:hover { background: #b91c1c; }
+
+/* ── Separator ── */
+.section-divider {
+  height: 2px;
+  background: #e5e7eb;
+  margin: 28px 0;
+  border-radius: 99px;
+}

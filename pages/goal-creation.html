@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GoalSync — Create Goals</title>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <link rel="stylesheet" href="../css/goals.css"/>
+  <link rel="stylesheet" href="../css/global.css"/>
+</head>
+<body class="dashboard-body">
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <h2>🎯 GoalSync</h2>
+    <div class="navbar-right">
+      <span id="navUserName">Loading...</span>
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+  </nav>
+
+  <div class="dashboard-content">
+
+    <!-- Page Header -->
+    <div class="page-header">
+      <div>
+        <h1>My Goals</h1>
+        <p>Create and manage your annual goals. Total weightage must equal 100%.</p>
+      </div>
+      <button class="btn-primary" onclick="openGoalModal()">
+        + Add Goal
+      </button>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="weightage-tracker">
+      <div class="weightage-info">
+        <span>Total Weightage</span>
+        <span id="weightageText">0% / 100%</span>
+      </div>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" id="weightageBar" style="width: 0%"></div>
+      </div>
+      <div class="weightage-meta">
+        <span id="goalCountText">0 of 8 goals added</span>
+        <span id="remainingText">100% remaining</span>
+      </div>
+    </div>
+
+    <!-- Manager Comment (shown if goals were returned) -->
+    <div class="manager-comment-box" id="managerCommentBox" style="display:none">
+      <strong>⚠️ Manager returned your goals:</strong>
+      <p id="managerCommentText"></p>
+    </div>
+
+    <!-- Goals List -->
+    <div id="goalsList">
+      <div class="empty-state" id="emptyState">
+        <div class="empty-icon">🎯</div>
+        <h3>No goals yet</h3>
+        <p>Click "Add Goal" to create your first goal</p>
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="submit-section" id="submitSection" style="display:none">
+      <div class="submit-info">
+        <span id="submitStatusText"></span>
+      </div>
+      <button class="btn-submit" id="submitBtn" onclick="submitAllGoals()">
+        Submit for Manager Approval
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Add/Edit Goal Modal -->
+  <div class="modal-overlay" id="goalModal" style="display:none">
+    <div class="modal-box">
+
+      <div class="modal-header">
+        <h3 id="modalTitle">Add New Goal</h3>
+        <button class="modal-close" onclick="closeGoalModal()">✕</button>
+      </div>
+
+      <div class="modal-body">
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Thrust Area *</label>
+            <select id="thrustArea">
+              <option value="">Select thrust area</option>
+              <option value="Revenue Growth">Revenue Growth</option>
+              <option value="Cost Optimization">Cost Optimization</option>
+              <option value="Customer Satisfaction">Customer Satisfaction</option>
+              <option value="Process Improvement">Process Improvement</option>
+              <option value="People Development">People Development</option>
+              <option value="Innovation">Innovation</option>
+              <option value="Compliance">Compliance</option>
+              <option value="Quality">Quality</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Weightage (%) *</label>
+            <input type="number" id="weightage" 
+                   placeholder="Min 10%" min="10" max="100" step="5"/>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Goal Title *</label>
+          <input type="text" id="goalTitle" 
+                 placeholder="e.g. Increase quarterly sales by 20%"/>
+        </div>
+
+        <div class="form-group">
+          <label>Description</label>
+          <textarea id="goalDesc" rows="3" 
+                    placeholder="Describe how you plan to achieve this goal..."></textarea>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Unit of Measurement *</label>
+            <select id="uomType" onchange="handleUomChange()">
+              <option value="">Select UoM</option>
+              <option value="min">Numeric — Higher is Better</option>
+              <option value="max">Numeric — Lower is Better</option>
+              <option value="percentage_min">Percentage — Higher is Better</option>
+              <option value="percentage_max">Percentage — Lower is Better</option>
+              <option value="timeline">Timeline (Date)</option>
+              <option value="zero">Zero Target</option>
+            </select>
+          </div>
+
+          <div class="form-group" id="targetGroup">
+            <label id="targetLabel">Target Value *</label>
+            <input type="number" id="targetValue" placeholder="Enter target"/>
+          </div>
+        </div>
+
+        <!-- UoM helper text -->
+        <div class="uom-hint" id="uomHint" style="display:none">
+          <span id="uomHintText"></span>
+        </div>
+
+        <!-- Modal error -->
+        <div class="error-box" id="modalError" style="display:none">
+          <span id="modalErrorText"></span>
+        </div>
+
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-secondary" onclick="closeGoalModal()">Cancel</button>
+        <button class="btn-primary" onclick="saveGoal()">Save Goal</button>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="../js/auth.js"></script>
+  <script src="../js/goals.js"></script>
+
+</body>
+</html>

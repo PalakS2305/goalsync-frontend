@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GoalSync — Team Goals</title>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <link rel="stylesheet" href="../css/goals.css"/>
+  <link rel="stylesheet" href="../css/manager.css"/>
+  <link rel="stylesheet" href="../css/global.css"/>
+</head>
+<body class="dashboard-body">
+
+  <nav class="navbar">
+    <h2>🎯 GoalSync</h2>
+    <div class="navbar-right">
+      <span id="navUserName">Loading...</span>
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+  </nav>
+
+  <div class="dashboard-content">
+
+    <!-- Page Header -->
+    <div class="page-header">
+      <div>
+        <h1>Team Goals</h1>
+        <p>Review and approve your team's submitted goals.</p>
+      </div>
+      <button class="btn-secondary" 
+              onclick="window.location.href='manager-dashboard.html'">
+        ← Back to Dashboard
+      </button>
+    </div>
+
+    <!-- Team List -->
+    <div id="teamList">
+      <div class="empty-state">
+        <div class="empty-icon">👥</div>
+        <h3>Loading team...</h3>
+      </div>
+    </div>
+
+    <!-- Employee Goals Panel (hidden until clicked) -->
+    <div id="employeePanel" style="display:none">
+
+      <div class="panel-header">
+        <div>
+          <h2 id="panelEmployeeName">Employee Goals</h2>
+          <p id="panelEmployeeDept" style="color:#6b7280"></p>
+        </div>
+        <button class="btn-secondary" onclick="closePanel()">
+          ✕ Close
+        </button>
+      </div>
+
+      <!-- Weightage Summary -->
+      <div class="weightage-tracker">
+        <div class="weightage-info">
+          <span>Total Weightage</span>
+          <span id="panelWeightage">0% / 100%</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill" id="panelBar" 
+               style="width:0%"></div>
+        </div>
+      </div>
+
+      <!-- Goals List -->
+      <div id="panelGoalsList"></div>
+
+      <!-- Approve / Return Actions -->
+      <div class="action-panel" id="actionPanel" style="display:none">
+
+        <div class="action-left">
+          <p id="actionStatus"></p>
+        </div>
+
+        <div class="action-right">
+          <button class="btn-return" onclick="showReturnBox()">
+            ↩ Return with Comment
+          </button>
+          <button class="btn-approve" onclick="approveGoals()">
+            ✓ Approve All Goals
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Return Comment Box -->
+      <div class="return-box" id="returnBox" style="display:none">
+        <label><strong>Return Comment *</strong></label>
+        <p style="font-size:0.85rem; color:#6b7280; margin-bottom:8px;">
+          Explain what needs to be changed
+        </p>
+        <textarea id="returnComment" rows="3" 
+                  placeholder="e.g. Please adjust weightage — Revenue Growth 
+                  should be higher priority..."></textarea>
+        <div class="return-box-actions">
+          <button class="btn-secondary" onclick="hideReturnBox()">
+            Cancel
+          </button>
+          <button class="btn-return-confirm" onclick="returnGoals()">
+            Send Back to Employee
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script src="../js/auth.js"></script>
+  <script src="../js/manager.js"></script>
+
+</body>
+</html>

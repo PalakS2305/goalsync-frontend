@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GoalSync — Analytics</title>
+  <link rel="stylesheet" href="../css/global.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="dashboard-body">
+
+  <nav class="navbar">
+    <h2>🎯 GoalSync</h2>
+    <div class="navbar-right">
+      <div class="navbar-user">
+        <div class="navbar-avatar" id="navAvatar">A</div>
+        <span id="navUserName">Loading...</span>
+      </div>
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+  </nav>
+
+  <div class="dashboard-content">
+
+    <div class="page-header">
+      <div>
+        <h1>Analytics Dashboard</h1>
+        <p>Real-time overview of GoalSync data.</p>
+      </div>
+      <button class="btn-secondary"
+              onclick="window.location.href='admin-panel.html'">
+        ← Back to Admin
+      </button>
+    </div>
+
+    <!-- Summary Stats -->
+    <div class="stats-row" id="summaryStats">
+      <div class="stat-card">
+        <div class="number" id="totalGoals">—</div>
+        <div class="label">Total Goals</div>
+      </div>
+      <div class="stat-card">
+        <div class="number" id="approvedGoals">—</div>
+        <div class="label">Approved</div>
+      </div>
+      <div class="stat-card">
+        <div class="number" id="pendingGoals">—</div>
+        <div class="label">Pending</div>
+      </div>
+      <div class="stat-card">
+        <div class="number" id="draftGoals">—</div>
+        <div class="label">Draft</div>
+      </div>
+    </div>
+
+    <!-- Charts Row -->
+    <div style="display:grid; grid-template-columns:1fr 1fr; 
+                gap:20px; margin-bottom:20px;">
+
+      <!-- Goals by Status -->
+      <div class="card">
+        <h3 style="color:#0f3460; margin-bottom:16px;">
+          Goals by Status
+        </h3>
+        <canvas id="statusChart" height="200"></canvas>
+      </div>
+
+      <!-- Goals by Thrust Area -->
+      <div class="card">
+        <h3 style="color:#0f3460; margin-bottom:16px;">
+          Goals by Thrust Area
+        </h3>
+        <canvas id="thrustChart" height="200"></canvas>
+      </div>
+
+    </div>
+
+    <!-- Quarterly Scores Chart -->
+    <div class="card">
+      <h3 style="color:#0f3460; margin-bottom:16px;">
+        Average Score by Quarter
+      </h3>
+      <canvas id="scoreChart" height="100"></canvas>
+    </div>
+
+  </div>
+
+  <script src="../js/auth.js"></script>
+  <script src="../js/analytics.js"></script>
+
+</body>
+</html>
