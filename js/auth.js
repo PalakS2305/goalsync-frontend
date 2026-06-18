@@ -83,7 +83,39 @@ document.addEventListener("DOMContentLoaded", () => {
 function logout() {
   localStorage.removeItem("token");
   localStorage.removeItem("user");
-  window.location.href = "../index.html";
+  // Works from any page depth
+  const depth = window.location.pathname.split("/").length - 2;
+  const prefix = depth > 0 ? "../".repeat(depth) : "./";
+  window.location.href = prefix + "index.html";
+}
+
+// ── Global API call with auth ──
+async function apiFetch(url, options = {}) {
+  const token = localStorage.getItem('token');
+
+  const defaultHeaders = {
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${token}`
+  };
+
+  const response = await fetch(`${API_URL}${url}`, {
+    ...options,
+    headers: {
+      ...defaultHeaders,
+      ...options.headers
+    }
+  });
+
+  // If token expired → logout automatically
+  if (response.status === 401) {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    alert('Session expired. Please login again.');
+    window.location.href = '../index.html';
+    return null;
+  }
+
+  return response;
 }
 
 // ── Get logged in user from localStorage ──
@@ -148,3 +180,11 @@ function setLoading(buttonId, isLoading, originalText) {
   btn.disabled = isLoading;
   btn.textContent = isLoading ? "Loading..." : originalText;
 }
+// ── Wake up Render server on page load ──
+(async function wakeUpServer() {
+  try {
+    await fetch(`${API_URL}/`);
+  } catch (e) {
+    // Silent fail — server will wake up
+  }
+})();

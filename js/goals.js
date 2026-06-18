@@ -74,21 +74,45 @@ function handleUomChange() {
 async function loadGoals() {
   const token = localStorage.getItem("token");
 
+  // Show loading
+  document.getElementById("goalsList").innerHTML = `
+    <div class="loading-box">
+      <div class="spinner"></div>
+      <p>Loading your goals...</p>
+    </div>`;
+
   try {
     const res = await fetch(`${API_URL}/api/goals/my`, {
       headers: { Authorization: `Bearer ${token}` },
     });
+
+    if (res.status === 401) {
+      localStorage.clear();
+      window.location.href = "../index.html";
+      return;
+    }
+
     const data = await res.json();
 
     if (!res.ok) {
-      console.error("Error loading goals:", data.error);
+      document.getElementById("goalsList").innerHTML = `
+        <div class="empty-state">
+          <div class="empty-icon">⚠️</div>
+          <h3>Error loading goals</h3>
+          <p>${data.error || "Please try again."}</p>
+        </div>`;
       return;
     }
 
     allGoals = data.goals;
     renderGoals(data.goals, data.total_weightage);
   } catch (err) {
-    console.error("Network error loading goals:", err);
+    document.getElementById("goalsList").innerHTML = `
+      <div class="empty-state">
+        <div class="empty-icon">🔌</div>
+        <h3>Cannot connect to server</h3>
+        <p>Make sure you are connected to the internet.</p>
+      </div>`;
   }
 }
 

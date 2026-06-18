@@ -28,15 +28,30 @@ function switchTab(tab) {
 // ── Load Users ──
 async function loadUsers() {
   const token = localStorage.getItem("token");
+
+  document.getElementById("usersList").innerHTML = `
+    <div class="loading-box">
+      <div class="spinner"></div>
+      <p>Loading users...</p>
+    </div>`;
+
   try {
     const res = await fetch(`${API_URL}/api/admin/users`, {
       headers: { Authorization: `Bearer ${token}` },
     });
+
+    if (res.status === 401) {
+      localStorage.clear();
+      window.location.href = "../index.html";
+      return;
+    }
+
     const data = await res.json();
     allUsersData = data.users;
     renderUsers(data.users);
   } catch (err) {
-    console.error("Load users error:", err);
+    document.getElementById("usersList").innerHTML =
+      '<p style="color:red">Cannot connect to server.</p>';
   }
 }
 

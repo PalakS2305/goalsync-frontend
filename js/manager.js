@@ -13,20 +13,43 @@ document.addEventListener("DOMContentLoaded", () => {
 async function loadTeam() {
   const token = localStorage.getItem("token");
 
+  document.getElementById("teamList").innerHTML = `
+    <div class="loading-box">
+      <div class="spinner"></div>
+      <p>Loading your team...</p>
+    </div>`;
+
   try {
     const res = await fetch(`${API_URL}/api/manager/team`, {
       headers: { Authorization: `Bearer ${token}` },
     });
+
+    if (res.status === 401) {
+      localStorage.clear();
+      window.location.href = "../index.html";
+      return;
+    }
+
     const data = await res.json();
 
     if (!res.ok) {
-      console.error("Error loading team:", data.error);
+      document.getElementById("teamList").innerHTML = `
+        <div class="empty-state">
+          <div class="empty-icon">⚠️</div>
+          <h3>Error loading team</h3>
+          <p>${data.error || "Please try again."}</p>
+        </div>`;
       return;
     }
 
     renderTeam(data.team);
   } catch (err) {
-    console.error("Network error:", err);
+    document.getElementById("teamList").innerHTML = `
+      <div class="empty-state">
+        <div class="empty-icon">🔌</div>
+        <h3>Cannot connect to server</h3>
+        <p>Make sure you are connected to the internet.</p>
+      </div>`;
   }
 }
 
