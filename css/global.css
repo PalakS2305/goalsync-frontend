@@ -523,3 +523,22 @@ body {
   .stats-row { grid-template-columns: 1fr; }
   .navbar h2 { font-size: 1rem; }
 }
+/* ── Loading ── */
+.spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid #e5e7eb;
+  border-top-color: #0f3460;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  margin: 0 auto 12px;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.loading-box {
+  text-align: center;
+  padding: 48px 20px;
+  color: #6b7280;
+  font-size: 0.9rem;
+}
